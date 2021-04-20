@@ -15,6 +15,13 @@ class CreateProductoProveedorTable extends Migration
     {
         Schema::create('producto_proveedor', function (Blueprint $table) {
             $table->id();
+
+            $table->bigInteger("producto_id")->unsigned();
+            $table->bigInteger("proveedor_id")->unsigned();
+
+            $table->foreign("producto_id")->references("id")->on("productos");
+            $table->foreign("proveedor_id")->references("id")->on("proveedors");
+            
             $table->timestamps();
         });
     }
