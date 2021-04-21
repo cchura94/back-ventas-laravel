@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
 use Illuminate\Http\Request;
 
-class ApiCategoriaController extends Controller
+class ApiRoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class ApiCategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::paginate(15);
-        return response()->json($categorias, 200);
+        //
     }
 
     /**
@@ -26,12 +24,7 @@ class ApiCategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $cat = new Categoria;
-        $cat->nombre = $request->nombre;
-        $cat->detalle = $request->detalle;
-        $cat->save();
-
-        return response()->json(["mensaje" => "Categoria Registrada"], 201);
+        //
     }
 
     /**
@@ -42,8 +35,7 @@ class ApiCategoriaController extends Controller
      */
     public function show($id)
     {
-        $cat = Categoria::find($id);
-        return response()->json($cat);
+        //
     }
 
     /**
@@ -55,13 +47,7 @@ class ApiCategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cat = Categoria::find($id);
-        $cat->nombre = $request->nombre;
-        $cat->detalle = $request->detalle;
-        $cat->save();
-
-        return response()->json(["mensaje" => "Categoria Modificada"], 201);
-   
+        //
     }
 
     /**
@@ -72,10 +58,6 @@ class ApiCategoriaController extends Controller
      */
     public function destroy($id)
     {
-        $cat = Categoria::find($id);
-        $cat->delete();
-        
-        return response()->json(["mensaje" => "Categoria Eliminada"], 201);
-   
+        //
     }
 }

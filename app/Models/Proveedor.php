@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Proveedor extends Model
 {
     use HasFactory;
+
+    // Muchos a Muchos
+    public function productos()
+    {
+        return $this->belongsToMany("App\Models\Producto");
+    }
 }

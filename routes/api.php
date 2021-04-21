@@ -1,6 +1,12 @@
 <?php
 
 use App\Http\Controllers\ApiCategoriaController;
+use App\Http\Controllers\ApiClienteController;
+use App\Http\Controllers\ApiPedidoController;
+use App\Http\Controllers\ApiProductoController;
+use App\Http\Controllers\ApiProveedorController;
+use App\Http\Controllers\ApiRoleController;
+use App\Http\Controllers\ApiUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +26,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource("/categoria", ApiCategoriaController::class);
+Route::apiResource("/pedido", ApiPedidoController::class);
+Route::apiResource("/cliente", ApiClienteController::class);
+Route::apiResource("/producto", ApiProductoController::class);
+Route::apiResource("/proveedor", ApiProveedorController::class);
+Route::apiResource("/role", ApiRoleController::class);
+Route::apiResource("/usuario", ApiUserController::class);
