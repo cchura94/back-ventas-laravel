@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class ApiUserController extends Controller
 {
@@ -24,7 +25,30 @@ class ApiUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validamos
+        $campos = $request->validate([
+            "name" => "required|string",
+            "email" => "required|string|unique:users|email",
+            "password" => "required|string|confirmed"
+        ]);
+
+        // guardar usuario
+        $u = new User;
+        $u->name = $request->name;
+        $u->email = $request->email;
+        $u->password = bcrypt($request->password);
+        $u->save();
+
+        // generar el token
+        $token = $u->createToken('myapptoken')->plainTextToken;
+
+            
+        //respondemos
+        $respuesta = [
+            "usuario" => $u,
+            "token" => $token
+        ];
+        return response()->json($respuesta, 201);
     }
 
     /**

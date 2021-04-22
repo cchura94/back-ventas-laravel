@@ -25,10 +25,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource("/categoria", ApiCategoriaController::class);
-Route::apiResource("/pedido", ApiPedidoController::class);
-Route::apiResource("/cliente", ApiClienteController::class);
-Route::apiResource("/producto", ApiProductoController::class);
-Route::apiResource("/proveedor", ApiProveedorController::class);
-Route::apiResource("/role", ApiRoleController::class);
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    Route::apiResource("/categoria", ApiCategoriaController::class);
+    Route::apiResource("/pedido", ApiPedidoController::class);
+    Route::apiResource("/cliente", ApiClienteController::class);
+    Route::apiResource("/producto", ApiProductoController::class);
+    Route::apiResource("/proveedor", ApiProveedorController::class);
+    Route::apiResource("/role", ApiRoleController::class);
+    
+
+});
+
 Route::apiResource("/usuario", ApiUserController::class);
+
