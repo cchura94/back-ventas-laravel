@@ -7,6 +7,7 @@ use App\Http\Controllers\ApiProductoController;
 use App\Http\Controllers\ApiProveedorController;
 use App\Http\Controllers\ApiRoleController;
 use App\Http\Controllers\ApiUserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
+    Route::post("/logout", [AuthController::class, "logout"]);
+
     Route::apiResource("/categoria", ApiCategoriaController::class);
     Route::apiResource("/pedido", ApiPedidoController::class);
     Route::apiResource("/cliente", ApiClienteController::class);
@@ -38,4 +41,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::apiResource("/usuario", ApiUserController::class);
-
+Route::post("/login", [AuthController::class, "login"]);
